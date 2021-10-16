@@ -2,10 +2,11 @@ class Macaulay2 < Formula
   @name = "M2"
   desc "Software system for algebraic geometry research"
   homepage "http://macaulay2.com"
-  url "https://github.com/Macaulay2/M2/archive/release-1.18.tar.gz"
-  sha256 "139075b8c5c9709c5ffd4183ca7aded088c2622ec3d8873f83ad1dda343aa09f"
+  url "https://github.com/Macaulay2/M2.git", using: :git, branch: "development"
+  version "1.19-rc0"
+  # url "https://github.com/Macaulay2/M2/archive/release-1.18.tar.gz"
+  # sha256 "139075b8c5c9709c5ffd4183ca7aded088c2622ec3d8873f83ad1dda343aa09f"
   license any_of: ["GPL-2.0-only", "GPL-3.0-only"]
-  revision 2
 
   bottle do
     root_url "https://github.com/Macaulay2/homebrew-tap/releases/download/macaulay2-1.18_2"
@@ -65,7 +66,7 @@ class Macaulay2 < Formula
     inreplace "M2/Macaulay2/packages/Macaulay2Doc/functions/findProgram-doc.m2", "Verbose => true", "Verbose => false"
 
     # Place the emacs submodule, since the tarfile doesn't include it
-    system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs" unless head?
+    # system "git", "clone", "https://github.com/Macaulay2/M2-emacs.git", "M2/Macaulay2/editors/emacs" unless head?
 
     # Prefix paths for dependencies
     lib_prefix = deps.map { |lib| Formula[lib.name].prefix }.join(";")
